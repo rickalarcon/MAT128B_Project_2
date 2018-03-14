@@ -1,0 +1,13 @@
+P = out(:,1:40);
+T = [eye(10) eye(10) eye(10) eye(10)];
+Ptest = out(:,41,50);
+
+NET = edu_createnn(P,T);
+%NET = newff(P,T,[35],{'logsig'});
+
+NET.divideParem.trainRatio = 1;
+NET.divideParam.valRatio = 0;
+NET.divideParam.testRatio = 0;
+NET.trainParam.goal = 0.001;
+
+NET = train(NET,P,T);
